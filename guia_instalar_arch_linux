@@ -1,0 +1,155 @@
+## INSTALACIÓN DE ARCH LINUX (SISTEMA BIOS LEGACY MBR/DOS) en sólo 15 pasos
+## Con 2 particiones ( Swap y Root (/) )
+
+1. Cargar nuestra distribución del teclado, por defecto está en inglés
+	# si quieres en español ( es ) y para el latinoamericano ( la-latin1 )
+	$ loadkeys KEY
+
+2. Configuración del internet con iwctl 
+	$ iwctl
+	[iwctl] device list 
+	[iwctl] station DEVICE get-networks
+	[iwctl] station DEVICE connect NETWORK
+	PASSPHRASE: *Introduces la contraseña de tu red*
+	
+	[iwctl] exit
+	
+	# Ahora a comprobar si hay internet
+	$ ping 8.8.8.8
+
+3. Particionado, formateado y montado del disco
+	# Necesitas saber cual disco vas a particionar. Con lsblk lo sabrás
+	$ lsblk
+
+	# Ya sabiendo el disco donde lo vas a instalar, escribiras lo siguiente
+	$ cfdisk /dev/???
+
+	# Ahora eliges el tipo de DOS
+	# Después crearás las particiones. 
+	# Si quieres swap, ve a donde dice "New" intro, luego especificas el tamaño de la memoria swap
+	# Casi siempre es el doble de tu RAM, pero no más de 4GB
+	# Luego damos intro.
+	# Ahora seleccionamos esa partición y vamos a donde dice "Type" y ahí selecciona la opción 82 (Linux Swap / Solaris)
+	# El espacio restante te lo recomiendo que lo dejes todo en una sola partición
+	# Ya acabando, antes de salir ve a "Write" y escribe "yes" y así tendríamos las particiones
+
+	# Al acabar el particionado toca formatear las particiones
+	# Formatear swap ( esto si es la partición 1 )	
+	$ mkswap /dev/???1
+	$ swapon /dev/???1
+
+
+	# Formatear nuestra partición / 
+	$ mkfs.ext4 /dev/???2
+	
+	# Y montar la partición
+	$ mount /dev/???2 /mnt
+
+
+3. Instalar paquetes básicos del sistema
+	$ pacstrap /mnt base linux linux-firmware nano
+	# Nota: nano es para editar algunos archivos
+
+4. Generar archivo fstab
+	$ genfstab -U /mnt >> /mnt/etc/fstab
+	# Verificar archivo fstab
+	$ cat /mnt/etc/fstab
+
+5. Instalación
+	$ arch-chroot /mnt
+
+# A partir de aquí el prompt cambiará, eso significa que si estamos en chroot
+
+6. Hora / Zona horaria
+	$ ln -sf /usr/share/zoneinfo/REGION/COUNTRY /etc/localtime
+	$ hwlock --systohc
+
+
+7. Idioma (locale)
+	$ nano /etc/locale.gen
+	# Descomentas tu locale
+	# Ctrl + o ; Ctrl + x
+	$ locale-gen
+
+	$ nano /etc/locale.conf
+	# Pones tu lang ( Ejemplo: )
+		LANG=es_MX.UTF-8
+
+8. Nombre del computador
+	$ nano /etc/hostname
+	# Pones tu nombre del computador
+
+9. Archivos del hosts
+	$ nano /etc/hosts
+	# Pones lo siguiente
+		127.0.0.1	localhost
+		::1		localhost
+		127.0.1.1	HOSTNAME.localdomain	HOSTNAME
+
+10. Contraseña de super usuario (root)
+	$ passwd
+
+11. Grub (Boot loader) y otras utilidades
+	$ pacman -S grub networkmanager network-manager-applet dialog wireless_tools wpa_supplicant os-prober mtools dosfstools base-devel linux-headers
+
+	$ grub-install --target=i386-pc /dev/???
+	$ grub-mkconfig -o /boot/grub/grub.cfg
+
+12. Salir de chroot
+	$ exit 
+
+13. Desmontar las particiones y reiniciar el sistema.
+	$ umount -a
+	$ reboot
+
+
+Cuando vayamos a iniciar sesión, iniciamos con root y su respectiva contraseña
+
+
+14. Activar internet
+	$ systemctl enable NetworkManager
+	$ systemctl start NetworkManager
+	$ nmtui
+	
+	# Comprobar 
+	$ ping 8.8.8.8
+
+15. Nuevo usuario
+	$ useradd -m -G wheel USER
+	# Contraseña
+	$ passwd USER
+	$ EDITOR=nano visudo
+	# Aquí descomentamos donde diga: 
+		# %wheel ALL=(ALL) ALL
+
+
+Y eso sería todo :)
+Guía de como instalar arch linux puro, sin servidor gráfico
+Espero que te sirva :)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
