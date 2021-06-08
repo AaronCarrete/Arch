@@ -61,6 +61,9 @@
 # A partir de aquí el prompt cambiará, eso significa que si estamos en chroot
 
 6. Hora / Zona horaria
+	# Para saber nuestra región y país, ejecutamos lo siguiente:
+	$ timedatectl list-timezones
+
 	$ ln -sf /usr/share/zoneinfo/REGION/COUNTRY /etc/localtime
 	$ hwlock --systohc
 
@@ -126,30 +129,3 @@ Cuando vayamos a iniciar sesión, iniciamos con root y su respectiva contraseña
 Y eso sería todo :)
 Guía de como instalar arch linux puro, sin servidor gráfico
 Espero que te sirva :)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
