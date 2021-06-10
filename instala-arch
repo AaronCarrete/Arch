@@ -22,7 +22,7 @@
 	$ lsblk
 
 	# Ya sabiendo el disco donde lo vas a instalar, escribiras lo siguiente
-	$ cfdisk /dev/???
+	$ cfdisk dev/???
 
 	# Ahora eliges el tipo de DOS
 	# Después crearás las particiones. 
@@ -36,15 +36,15 @@
 
 	# Al acabar el particionado toca formatear las particiones
 	# Formatear swap ( esto si es la partición 1 )	
-	$ mkswap /dev/???1
-	$ swapon /dev/???1
+	$ mkswap dev/???1
+	$ swapon dev/???1
 
 
 	# Formatear nuestra partición / 
-	$ mkfs.ext4 /dev/???2
+	$ mkfs.ext4 dev/???2
 	
 	# Y montar la partición
-	$ mount /dev/???2 /mnt
+	$ mount dev/???2 /mnt
 
 
 3. Instalar paquetes básicos del sistema
@@ -65,7 +65,7 @@
 	# Para saber nuestra región y país, ejecutamos lo siguiente:
 	$ timedatectl list-timezones
 
-	$ ln -sf /usr/share/zoneinfo/REGION/COUNTRY /etc/localtime
+	$ ln -sf usr/share/zoneinfo/REGION/COUNTRY etc/localtime
 	$ hwlock --systohc
 
 
@@ -80,11 +80,11 @@
 		LANG=es_MX.UTF-8
 
 8. Nombre del computador
-	$ nano /etc/hostname
+	$ nano etc/hostname
 	# Pones tu nombre del computador
 
 9. Archivos del hosts
-	$ nano /etc/hosts
+	$ nano etc/hosts
 	# Pones lo siguiente
 		127.0.0.1	localhost
 		::1		localhost

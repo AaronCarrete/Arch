@@ -25,18 +25,18 @@
 
 -Personalización de nuestro sistema (íconos, cursores, temas, etc...)
 	
-	# Primero descargamos lxappearance con pacman 
-	$ sudo pacman -S lxappearance
+	1. Descargar lxappeareance con pacman
+		$ sudo pacman -S lxappearance
 
-	## Luego instalamos ocs-url con yay 
-	$ yay -S ocs-url 
+	2. Instalar ocs-url con yay
+		$ yay -S ocs-url 
 
-	# Entramos a una página como https://xfce-look.org o https://gnome-look.org y seleccionamos el tema o cursor que queremos
+	3. Entramos a una página como https://xfce-look.org o https://gnome-look.org y seleccionamos el tema o cursor que queremos
 
-	# Ya elegido lo que vamos a instalar, da clic en donde dice Install y no en Download, ahora te debe aparecer un recuadro de ocs-url que te pida la confirmación de descarga
+	4. Ya elegido lo que vamos a instalar, da clic en donde dice Install y no en Download, ahora te debe aparecer un recuadro de ocs-url que te pida la confirmación de descarga
 , aceptas y esperas a que acabe 
 
-	# Ahora abres lxappearance y vamos (si instalaste un cursor) a ese apartado y seleccionas lo que instalaste y en la esquina inferior izquierda das en aplicar y sales.
+	5 Ahora abres lxappearance y vamos (si instalaste un cursor) a ese apartado y seleccionas lo que instalaste y en la esquina inferior izquierda das en aplicar y sales.
 
 
 
