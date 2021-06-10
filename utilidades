@@ -1,0 +1,57 @@
+-Programas básicos: 
+	$ sudo pacman -S xorg xorg-xinit bpswm sxhkd picom nitrogen dmenu thunar opera alacritty
+
+
+¿Cómo instalo yay?:
+	1. Descarga git, y comprueba que lo tengas
+		$ sudo pacman -S git 
+		$ git --version
+	2. Ve a esta carpeta y clona aquí el repositorio
+		$ cd /opt 
+		$ sudo git clone https://aur.archlinux.org/yay-git.git
+	3. Dale esa carpeta a tu usuario y dirígete a ella
+		$ sudo chown -R USER:USER ./yay-git
+		$ cd yay-git/
+	4. Verifica que estas en esa carpeta:
+		$ pwd
+		/opt/yay-git
+	5. Instalalo
+		$ makepkg -si
+
+
+-¿Cómo instalar polybar?
+	$ yay -S polybar ttf-unifont ttf-font-awesome
+
+
+-Personalización de nuestro sistema (íconos, cursores, temas, etc...)
+	
+	# Primero descargamos lxappearance con pacman 
+	$ sudo pacman -S lxappearance
+
+	## Luego instalamos ocs-url con yay 
+	$ yay -S ocs-url 
+
+	# Entramos a una página como https://xfce-look.org o https://gnome-look.org y seleccionamos el tema o cursor que queremos
+
+	# Ya elegido lo que vamos a instalar, da clic en donde dice Install y no en Download, ahora te debe aparecer un recuadro de ocs-url que te pida la confirmación de descarga
+, aceptas y esperas a que acabe 
+
+	# Ahora abres lxappearance y vamos (si instalaste un cursor) a ese apartado y seleccionas lo que instalaste y en la esquina inferior izquierda das en aplicar y sales.
+
+
+
+
+¿Cómo instalo una fuente en Arch Linux?
+
+	1. Vas a descomprimir el archivo, generalmente viene .zip, sino, busca como descomprimirlo. En mi caso el archivo es CascadiaCode.zip, por lo que ejecutaré:	
+		$ unzip <Fuente>
+		// Si no tienes <<unzip>>, instálalo
+		$ sudo pacman -S unzip 
+
+	2. Ahora tendrás muchos archivos que terminen o con .ttf o .otf, lo que harás es:
+		$ sudo mv *.ttf /usr/share/fonts/
+		// Si tienes .otf, has lo mismo solo cambiando la primera 't' por una 'o'
+
+	3. ¡Listo! Has instalado correctamente una fuente en linux :)
+			
+
