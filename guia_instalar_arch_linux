@@ -31,6 +31,7 @@
 	# Luego damos intro.
 	# Ahora seleccionamos esa partición y vamos a donde dice "Type" y ahí selecciona la opción 82 (Linux Swap / Solaris)
 	# El espacio restante te lo recomiendo que lo dejes todo en una sola partición
+	# Ahora seleccionas la partición root y en el menú de abajo vas a donde dice "Bootable" y das intro
 	# Ya acabando, antes de salir ve a "Write" y escribe "yes" y así tendríamos las particiones
 
 	# Al acabar el particionado toca formatear las particiones
